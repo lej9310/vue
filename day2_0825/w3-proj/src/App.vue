@@ -1,5 +1,6 @@
 <script setup>
 import D4_for from './components/D4_for.vue';
+import D5_events from './components/D5_events.vue';
 
 </script>
 
@@ -7,7 +8,8 @@ import D4_for from './components/D4_for.vue';
   <!-- <D1_bind /> -->
   <!-- <D2_if /> -->
   <!-- <D3_show /> -->
-  <D4_for />
+  <!-- <D4_for /> -->
+  <D5_events />
 </template>
 
 <style scoped>
