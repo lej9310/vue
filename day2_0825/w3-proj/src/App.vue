@@ -1,28 +1,19 @@
 <script setup>
+import D1_bind from './components/D1_bind.vue';
+import D2_if from './components/D2_if.vue';
+import D3_show from './components/D3_show.vue';
 import D4_for from './components/D4_for.vue';
-import D5_events from './components/D5_events.vue';
+import D5_event from './components/D5_event.vue';
 
 </script>
 
 <template>
-  <!-- <D1_bind /> -->
-  <!-- <D2_if /> -->
-  <!-- <D3_show /> -->
-  <!-- <D4_for /> -->
-  <D5_events />
+  <D1_bind />
+  <D2_if />
+  <D3_show />
+  <D4_for />
+  <D5_event />
 </template>
 
 <style scoped>
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-} */
 </style>
