@@ -1,5 +1,6 @@
 <!-- vbase-3-setup -->
 <template>
+    <p>[메뉴 목록]</p>
     <div>
         <ol>
             <li v-for="x in FoodList">{{ x }}</li>
@@ -7,7 +8,7 @@
     </div>
     <hr>
 
-    <div class="menu">
+    <div class="menu">        
         <img v-for="(src, x) in FoodList2" :src="src" :key="x" alt="Food List">
     </div>
     <hr>
