@@ -1,5 +1,33 @@
 <template>
     <div>
+        <h4>@click 이벤트: text 바꾸기</h4>
+        <div class="bg" @click="changeText">
+            {{ text }}
+        </div>
+
+        <h4>@mousemove 이벤트: 위치 속성 삽입</h4>
+        <div class="bg" @mousemove="mousePos1">
+            <span>xPos{{ xPos }} --- ypos{{ yPos }}</span>
+        </div>
+
+        <h4>Passing Arguments</h4>
+        <div class="bg">
+            <img src="../assets/img_moose.jpg" alt="img_moose">
+            <p>{{ "Moose count: " + count }}</p>
+            <button @click="addCount(1)">+1 증가</button>
+            <button @click="addCount(5)">+5 증가</button>
+            <button @click="addCount(-1)">-1 감소</button>
+        </div>
+
+        <h4>아래 호랑이 그림을 눌러보세요~</h4>
+        <div class="bg">
+            <img id="tiger" @click="myMethod($event, 'Hello')" :src="tiger" alt="img_tiger">
+            <p>{{ msgAndId }}</p>
+        </div>
+    </div>
+    <hr>
+
+    <div>
         <p>method를 실행하려면 박스를 클릭하세요!</p>
         <div class="box" @click="chgTxt">
             {{ text }}
@@ -29,7 +57,13 @@
     <hr>
 
     <div>
-        <p></p>
+        <p>박스 안에 텍스트를 작성해 보세요.</p>
+        <p>공책에 입력한 텍스트가 작성됩니다~</p>
+        <textarea @input="writeText" rows="8" cols="30" placeholder="여기에 작성을 시작해보세요..."></textarea>
+        <img :src="note" alt="notebook">
+        <div class="bg">
+            <span>{{ text }}</span>
+        </div>
     </div>
     <hr>
 
@@ -37,11 +71,30 @@
 
 <script setup>
 import { ref } from 'vue';
+import tiger from "../assets/img_tiger.jpeg";
+import note from '../assets/img_notebook.jpg'
 
 const text = ref('')
-const boxRef = ref(null)
+const changeText = () => {
+    text.value = 'Hello World!'
+}
 const xPos = ref(0)
 const yPos = ref(0)
+const mousePos1 = (e) => {
+    xPos.value = e.offsetX
+    yPos.value = e.offsetY
+}
+const boxRef = ref(null)
+const count = ref(0)
+const addCount = (num) => {
+    count.value += num
+}
+
+const msgAndId = ref('')
+const myMethod = (e, msg) => {
+    msgAndId.value = `${e.target.id}야, ${msg} 좋은 하루~!`
+}
+
 
 function chgTxt() {
     text.value = 'Hello World!'
@@ -59,7 +112,12 @@ function mousePos(event) {
     if (xPos.value < 0) xPos.value = 0
     if (yPos.value < 0) yPos.value = 0
 }
+
+function writeText(event) {
+    text.value = event.target.value
+}
 </script>
+
 
 <style scoped>
 div {
@@ -67,6 +125,22 @@ div {
     width: 90%;
     padding: 5px;
     margin: 10px auto;
+}
+
+.bg {
+    margin: 10px;
+    min-height: 50px;
+    display: inline-block;
+    border: 3px double purple;
+    background-color: lightgoldenrodyellow;
+    line-height: 1.5;
+    font-weight: bold;
+    color: red;
+}
+
+.bg>img {
+    width: 150px;
+    height: auto;
 }
 
 p {
@@ -87,12 +161,23 @@ span {
     margin: 5px auto;
     align-items: center;
     cursor: pointer;
-    width: 180px;
     height: 60px;
     background-color: lightgreen;
     padding: 10px;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
 
+}
+
+button {
+    border: 1px solid gray;
+    display: block;
+    width: 100px;
+    margin: 5px auto;
+    align-items: center;
+    font-weight: bold;
+    background-color: darkgray;
+    color: white;
+    box-shadow: 0 0 1.5px grey;
 }
 </style>
