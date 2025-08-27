@@ -3,15 +3,17 @@ import { ref } from 'vue';
 import Ex4 from './components/D4_for.vue';
 import Ex5 from './components/D5_events.vue';
 import Ex6 from './components/D6_methods.vue';
+import Ex7 from './components/D7_model.vue';
 
-const pages = { Ex4, Ex5, Ex6 }
-const activeComp = ref("Ex6")
+const pages = { Ex4, Ex5, Ex6, Ex7}
+const activeComp = ref("Ex7")
 </script>
 
 <template>
   <button @click="activeComp = 'Ex4'">v-for</button>
   <button @click="activeComp = 'Ex5'">Events</button>
   <button @click="activeComp = 'Ex6'">Methods</button>
+  <button @click="activeComp = 'Ex7'">v-model</button>
 
   <div id="comp_view">
     <KeepAlive>

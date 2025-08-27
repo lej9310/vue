@@ -21,7 +21,7 @@
 
         <h4>아래 호랑이 그림을 눌러보세요~</h4>
         <div class="bg">
-            <img id="tiger" @click="myMethod($event, 'Hello')" :src="tiger" alt="img_tiger">
+            <img id="tiger" @click="myMethod($event, '안녕')" :src="tiger" alt="img_tiger">
             <p>{{ msgAndId }}</p>
         </div>
     </div>
@@ -60,8 +60,8 @@
         <p>박스 안에 텍스트를 작성해 보세요.</p>
         <p>공책에 입력한 텍스트가 작성됩니다~</p>
         <textarea @input="writeText" rows="8" cols="30" placeholder="여기에 작성을 시작해보세요..."></textarea>
-        <img :src="note" alt="notebook">
-        <div class="bg">
+        <div class="note">
+            <img :src="note" alt="notebook">
             <span>{{ text }}</span>
         </div>
     </div>
@@ -89,7 +89,6 @@ const count = ref(0)
 const addCount = (num) => {
     count.value += num
 }
-
 const msgAndId = ref('')
 const myMethod = (e, msg) => {
     msgAndId.value = `${e.target.id}야, ${msg} 좋은 하루~!`
@@ -127,8 +126,7 @@ div {
     margin: 10px auto;
 }
 
-.bg {
-    margin: 10px;
+.bg {    
     min-height: 50px;
     display: inline-block;
     border: 3px double purple;
@@ -155,6 +153,19 @@ span {
     margin: 20px;
 }
 
+
+button {
+    border: 1px solid gray;
+    display: block;
+    width: 100px;
+    margin: 5px auto;
+    align-items: center;
+    font-weight: bold;
+    background-color: darkgray;
+    color: white;
+    box-shadow: 0 0 1.5px grey;
+}
+
 .box {
     border: black dotted 1px;
     padding: 0 20px 20px 20px;
@@ -169,15 +180,16 @@ span {
 
 }
 
-button {
-    border: 1px solid gray;
-    display: block;
-    width: 100px;
+.note {            
+    border: none;
     margin: 5px auto;
     align-items: center;
-    font-weight: bold;
-    background-color: darkgray;
-    color: white;
-    box-shadow: 0 0 1.5px grey;
+}
+
+.note>img {
+    width: 200px; 
+    margin: 5px auto;   
+    transform-origin: top left;
+    transform: scale(2);    
 }
 </style>
