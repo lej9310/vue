@@ -1,33 +1,31 @@
 <template>
-    <div>
-        <h4>@click 이벤트: text 바꾸기</h4>
-        <div class="bg" @click="changeText">
-            {{ text }}
-        </div>
+    <h4>@click 이벤트: text 바꾸기</h4>
+    <div class="bg" @click="changeText">
+        {{ text }}
+    </div>
 
-        <h4>@mousemove 이벤트: 위치 속성 삽입</h4>
-        <div class="bg" @mousemove="mousePos1">
-            <span>xPos{{ xPos }} --- ypos{{ yPos }}</span>
-        </div>
+    <h4>@mousemove 이벤트: 위치 속성 삽입</h4>
+    <div class="bg" @mousemove="mousePos1">
+        <p>xPos{{ xPos }} --- ypos{{ yPos }}</p>
+    </div>
 
-        <h4>Passing Arguments</h4>
-        <div class="bg">
-            <img src="../assets/img_moose.jpg" alt="img_moose">
-            <p>{{ "Moose count: " + count }}</p>
-            <button @click="addCount(1)">+1 증가</button>
-            <button @click="addCount(5)">+5 증가</button>
-            <button @click="addCount(-1)">-1 감소</button>
-        </div>
+    <h4>Passing Arguments</h4>
+    <div class="bg">
+        <img src="../assets/img_moose.jpg" alt="img_moose">
+        <p>{{ "Moose count: " + count }}</p>
+        <button @click="addCount(1)">+1 증가</button>
+        <button @click="addCount(5)">+5 증가</button>
+        <button @click="addCount(-1)">-1 감소</button>
+    </div>
 
-        <h4>아래 호랑이 그림을 눌러보세요~</h4>
-        <div class="bg">
-            <img id="tiger" @click="myMethod($event, '안녕')" :src="tiger" alt="img_tiger">
-            <p>{{ msgAndId }}</p>
-        </div>
+    <h4>아래 호랑이 그림을 눌러보세요~</h4>
+    <div class="bg">
+        <img id="tiger" @click="myMethod($event, '안녕')" :src="tiger" alt="img_tiger">
+        <p>{{ msgAndId }}</p>
     </div>
     <hr>
 
-    <div>
+    <div class="bg">
         <p>method를 실행하려면 박스를 클릭하세요!</p>
         <div class="box" @click="chgTxt">
             {{ text }}
@@ -35,7 +33,7 @@
     </div>
     <hr>
 
-    <div>
+    <div class="bg">
         <p>마우스 포인터를 박스 위에서 움직여 보세요!<br>현재 위치 정보가 나옵니다~</p>
         <div class="box" @mousemove="mousePos" ref="boxRef">
             xPos: {{ xPos }} <br>
@@ -44,24 +42,23 @@
     </div>
     <hr>
 
-    <div>
+    <div class="bg">
         <p>마우스 포인터를 박스 위에서 움직여 보세요!<br>현재 위치에 따라 배경색이 바뀝니다~</p>
         <div class="box" @mousemove="mousePos" :style="{ backgroundColor: 'hsl(' + xPos + ',80%,80%)' }" ref="boxRef">
             xPos: {{ xPos }} <br>
             yPos: {{ yPos }}
         </div>
-        <p>backgroundColor:`hsl(<strong>{{ xPos }}</strong>, 80%, , 80%)`</p>
+        <h4>backgroundColor:`hsl(<strong>{{ xPos }}</strong>, 80%, , 80%)`</h4>
         <p>CSS에서 'hsl()'을 이용하여 색상 설정하는 법을 알고 싶다면 <a href="https://www.w3schools.com/css/css_colors_hsl.asp"
                 target="_blank">이 페이지</a>를 참조하세요.</p>
     </div>
     <hr>
 
-    <div>
+    <div class="bg">
         <p>박스 안에 텍스트를 작성해 보세요.</p>
         <p>공책에 입력한 텍스트가 작성됩니다~</p>
         <textarea @input="writeText" rows="8" cols="30" placeholder="여기에 작성을 시작해보세요..."></textarea>
         <div class="note">
-            <img :src="note" alt="notebook">
             <span>{{ text }}</span>
         </div>
     </div>
@@ -72,7 +69,6 @@
 <script setup>
 import { ref } from 'vue';
 import tiger from "../assets/img_tiger.jpeg";
-import note from '../assets/img_notebook.jpg'
 
 const text = ref('')
 const changeText = () => {
@@ -112,28 +108,22 @@ function mousePos(event) {
     if (yPos.value < 0) yPos.value = 0
 }
 
-function writeText(event) {
-    text.value = event.target.value
+function writeText(e) {
+    text.value = e.target.value
 }
 </script>
 
-
 <style scoped>
-div {
-    border: dashed greenyellow 1px;
+.bg {
     width: 90%;
+    min-height: 50px;
     padding: 5px;
     margin: 10px auto;
-}
-
-.bg {    
-    min-height: 50px;
     display: inline-block;
     border: 3px double purple;
     background-color: lightgoldenrodyellow;
     line-height: 1.5;
     font-weight: bold;
-    color: red;
 }
 
 .bg>img {
@@ -143,30 +133,23 @@ div {
 
 p {
     background-color: rgba(159, 183, 244, 0.759);
-    line-height: 1.5;
     font-weight: bold;
+    margin: 0;
 }
-
-span {
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
-    margin: 20px;
-}
-
 
 button {
-    border: 1px solid gray;
-    display: block;
+    border: 1px solid gray;    
     width: 100px;
-    margin: 5px auto;
+    margin: 5px 15px;
     align-items: center;
     font-weight: bold;
-    background-color: darkgray;
+    background-color: darkgreen;
     color: white;
     box-shadow: 0 0 1.5px grey;
 }
 
 .box {
+    width: 250px;
     border: black dotted 1px;
     padding: 0 20px 20px 20px;
     margin: 5px auto;
@@ -180,16 +163,26 @@ button {
 
 }
 
-.note {            
-    border: none;
-    margin: 5px auto;
-    align-items: center;
+.note {
+    width: 100%;
+    position: relative;
+    margin-top: 10px;
+    aspect-ratio: 1;
+    background-image: url("../assets/img_notebook.jpg");
+    background-size: 300%;
+    background-position: -500px 0;
+    overflow: hidden;
 }
 
-.note>img {
-    width: 200px; 
-    margin: 5px auto;   
-    transform-origin: top left;
-    transform: scale(2);    
+span {
+    width: 80%;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.2em;
+    transform-origin: 0 0;
+    rotate: 33deg;
+    position: absolute;
+    top: 50px;
+    left: 70px;
 }
 </style>

@@ -12,11 +12,5 @@ const inpCount = ref(0)
 </script>
 
 <style scoped>
-div {
-    border: dashed greenyellow 1px;
-    width: 90%;
-    margin: 5px auto;
-    display: flex;
-    flex-wrap: wrap;
-}
+
 </style>
